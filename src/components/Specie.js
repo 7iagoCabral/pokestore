@@ -1,14 +1,12 @@
 import styled from "styled-components";
-import Eletric from "../assets/images/species/eletric.svg";
 import React from "react";
-import { ReactSVG } from "react";
+//import { eletricSVG } from "../assets/images/species/eletric.svg";
 
 
 export function Specie() {
     return(
         <$Specie>
             <span>Eletric</span>
-            <Eletric />
         </$Specie>
     )
 }

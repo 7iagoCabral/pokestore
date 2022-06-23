@@ -2,20 +2,20 @@ import styled from "styled-components";
 import { Sword, Activity, ShieldCheckered } from "phosphor-react";
 
 
-export function PokemonSpec() {
+export function PokemonSpec({props}) {
     return(
         <PokeSpec>
                 <PokeTag background="#D96767">   
                     <Sword size={16} color="#fafafa" />
-                    7
+                    {props[0]}
                 </PokeTag>
                 <PokeTag background="#68CF8B">
                     <Activity size={16} color="#fafafa" />
-                    121
+                    {props[1]}
                 </PokeTag>
                 <PokeTag background="#D9C067">
                     <ShieldCheckered size={16} color="#fafafa" />
-                    22
+                    {props[2]}
                 </PokeTag>
             </PokeSpec>
     );

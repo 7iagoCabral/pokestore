@@ -44,7 +44,7 @@ const Nav = styled.nav`
 
     height: 78px;
 
-    background: #D11111;
+    background: #D94747;
 
     .container {
         display: flex;

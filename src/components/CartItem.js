@@ -51,7 +51,7 @@ const CartComponent = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
-        background: #D11111;
+        background: #D94747;
         border-radius: 50%;
 
         width: 10 0px;
@@ -105,7 +105,7 @@ const CartComponent = styled.div`
             align-items: center;
             width: 28px;
             height: 28px;
-            background: #D11111;
+            background: #D94747;
             border: 0;
             border-radius: 6px 6px 0 0;
 
@@ -117,7 +117,7 @@ const CartComponent = styled.div`
             align-items: center;
             width: 28px;
             height: 28px;
-            background: #D11111;
+            background: #D94747;
             border: 0;
             border-radius: 0 0 6px 6px;
 

@@ -31,4 +31,6 @@ body{
 `;
 
 
+
+
 export default GlobalStyled;

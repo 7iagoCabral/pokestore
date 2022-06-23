@@ -147,7 +147,7 @@ const ResumeButton = styled.button`
 
     width: 238px;
     height: 35px;
-    background: #D11111;
+    background: #D94747;
     border-radius: 6px;
     border: 0;
 

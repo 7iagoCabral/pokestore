@@ -1,12 +1,16 @@
 import styled from "styled-components";
+import { usePokemon } from "../hooks/usePokemon";
 import { PokemonSpec } from "./PokemonSpec";
 
-export function Card() {
+export function Card(props) {
+    console.log(props.pokemon.url)
+    const data = usePokemon(props.pokemon.url);
+    console.log(data)
     return(
         <$Card>
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/4.svg" alt="" />
-            <h2>charmander</h2>
-                <PokemonSpec />
+            <img src={data.avatarImg} alt={data.name} />
+            <h2>{data.name}</h2>
+                <PokemonSpec props={data.infos} />
                 <span className="price">P$ 565,74</span>
                 <CardButton>Comprar</CardButton>
             
@@ -65,7 +69,7 @@ const CardButton = styled.button`
     border-radius: 0px 0px 4px 4px;
     border: 0;
 
-    background: #D11111;
+    background: #D94747;
 
     font-family: 'Oswald';
     font-style: normal;

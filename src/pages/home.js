@@ -1,29 +1,30 @@
 import styled from "styled-components";
 import { Card } from "../components/Card";
-import { Menu } from "../components/Menu";
 import { Specie } from "../components/Specie";
+import { UsePokemons } from "../hooks/usePokemons";
 
 
 export function Home() {
+    const pokemons = UsePokemons();
+    
+    function pokemon(pokemons) {
+        return pokemons.map((p) => <Card key={p.name} pokemon={p} />);
+    }
+
     return(
         <Main>
     
         
         <Specie />
         
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-    
+        { !pokemons.loading && pokemon(pokemons.data) }
+       
         </Main>
     );
+
+    
 }
+
 
 const Main = styled.div`
     display: flex;
