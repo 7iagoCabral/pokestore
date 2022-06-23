@@ -2,24 +2,36 @@ import styled from "styled-components";
 import { usePokemon } from "../hooks/usePokemon";
 import { PokemonSpec } from "./PokemonSpec";
 
-export function Card(props) {
-    console.log(props.pokemon.url)
-    const data = usePokemon(props.pokemon.url);
-    console.log(data)
-    return(
-        <$Card>
-            <img src={data.avatarImg} alt={data.name} />
-            <h2>{data.name}</h2>
-                <PokemonSpec props={data.infos} />
-                <span className="price">P$ 565,74</span>
-                <CardButton>Comprar</CardButton>
-            
-        </$Card>
+import loadingImg from "../assets/images/pokeball.png";
 
-    );
+export function Card(props) {
+    const {loading, pokemon} = usePokemon(props.pokemon.url);
+    
+  
+    
+    if(!loading){
+        return(
+            <CARD>
+                <img src={pokemon.avatarImg} alt={pokemon.name} />
+                <h2>{pokemon.name.substr(0, 17)}</h2>
+                    <PokemonSpec props={pokemon.infos} />
+                    <span className="price">P$ {pokemon.price}</span>
+                    <CardButton>Comprar</CardButton>
+                
+            </CARD>
+    
+        );
+    }else{
+                return(
+                    <CARD>
+                        <Loading src={loadingImg} alt="Loading" />
+                    </CARD>
+                );
+
+    }
 }
 
-const $Card = styled.div`
+const CARD = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -83,5 +95,22 @@ const CardButton = styled.button`
 
     &:hover{
         filter: brightness(0.80);
+    }
+`;
+const Loading = styled.img`
+    display: flex;
+    margin: 15px auto 0 auto;
+    width: auto;
+    max-height: 80px ;
+    animation: rotation 8s infinite linear;
+    
+    
+    @keyframes rotation {
+        from {
+        transform: rotate(0deg);
+        }
+        to {
+        transform: rotate(359deg);
+        }
     }
 `;

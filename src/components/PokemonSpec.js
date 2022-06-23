@@ -7,15 +7,15 @@ export function PokemonSpec({props}) {
         <PokeSpec>
                 <PokeTag background="#D96767">   
                     <Sword size={16} color="#fafafa" />
-                    {props[0]}
+                    {props ? props?.atk : '00'}
                 </PokeTag>
                 <PokeTag background="#68CF8B">
                     <Activity size={16} color="#fafafa" />
-                    {props[1]}
+                    {props ? props?.hp : '00'}
                 </PokeTag>
                 <PokeTag background="#D9C067">
                     <ShieldCheckered size={16} color="#fafafa" />
-                    {props[2]}
+                    {props ? props?.def :'00'}
                 </PokeTag>
             </PokeSpec>
     );
