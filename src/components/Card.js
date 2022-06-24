@@ -3,9 +3,12 @@ import { usePokemon } from "../hooks/usePokemon";
 import { PokemonSpec } from "./PokemonSpec";
 
 import loadingImg from "../assets/images/pokeball.png";
+import { useContext } from "react";
+import { CartContext } from "../contexts/CartContext";
 
 export function Card(props) {
     const {loading, pokemon} = usePokemon(props.pokemon.url);
+    const { handleBuyPokemon } = useContext(CartContext)
     
   
     
@@ -16,7 +19,7 @@ export function Card(props) {
                 <h2>{pokemon.name.substr(0, 17)}</h2>
                     <PokemonSpec props={pokemon.infos} />
                     <span className="price">P$ {pokemon.price}</span>
-                    <CardButton>Comprar</CardButton>
+                    <CardButton onClick={()=> handleBuyPokemon(pokemon)}>Comprar</CardButton>
                 
             </CARD>
     

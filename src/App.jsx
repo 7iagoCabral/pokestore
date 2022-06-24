@@ -5,6 +5,7 @@ import { theme } from './theme/theme'
 import { Menu } from './components/Menu';
 import { Home } from './pages/home';
 import { Cart } from './pages/cart';
+import { CartContextProvide } from './contexts/CartContext';
 
 
 function App() {
@@ -12,13 +13,16 @@ function App() {
     
     <BrowserRouter>
       <GlobalStyled />
-      
-        <Menu />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/cart" element={<Cart />} />
-          </Routes>
+        <CartContextProvide>
+            
+              <Menu />
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/cart" element={<Cart />} />
+                </Routes>
 
+
+        </CartContextProvide>
       
       
 

@@ -2,30 +2,37 @@ import styled from "styled-components";
 import {  } from "phosphor-react";
 import { CartItem } from "../components/CartItem";
 
+import { useContext } from "react";
+import { CartContext } from "../contexts/CartContext";
+
 export function Cart() {
+    const { MyCartStorage } = useContext(CartContext);
+    function pokemon(pokemons) {
+        return pokemons.map((pokemon)=> <CartItem key={pokemon.name} pokemon={pokemon} />)
+    }
+
+    function ResumeCart(pokemons){
+        console.log(pokemons)
+        return (pokemons.map((pokemon) => {
+            <ResumeItem key={pokemon.name}>
+                 <span>{pokemon.qtd} - {pokemon.name} </span>
+                 <span>P$ {pokemon.price * pokemon.qtd} </span>
+            </ResumeItem>
+
+        }))
+    }
     return(
         <Main>
         <Wrapper width="70%" >
         <Title>Meu Carrinho</Title>
-            <CartItem />
-            <CartItem />
+            {MyCartStorage && pokemon(MyCartStorage)}
         </Wrapper>
         <Wrapper width="30%" >
             <Resume>
                 <SubTitle>Resumo do pedido</SubTitle>
-
-                <ResumeItem>
-                    <span>2 Charmander </span>
-                    <span>P$ 324,48 </span>
-                </ResumeItem>
-                <ResumeItem>
-                    <span>2 Charmander </span>
-                    <span>P$ 324,48 </span>
-                </ResumeItem>
-                <ResumeItem>
-                    <span>2 Charmander </span>
-                    <span>P$ 324,48 </span>
-                </ResumeItem>
+                    {MyCartStorage && ResumeCart(MyCartStorage)}
+                
+                
                 <BreakLine />
                 <ResumeTotal>
                     <span>Total</span>

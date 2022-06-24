@@ -6,26 +6,11 @@ import { UsePokemons } from "../hooks/usePokemons";
 
 
 export function Home() {
-    
-       
-  
-        //const [endScroll, setEndscroll] = useState(30);
-        //window.onscroll = function(ev) {
-         //   if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
-           //     setEndscroll(endScroll + 30)
-
-                
-                
-        //    }
-       // };
         
      
-       const [currentPage, setCurrentPage] = useState(-30)
-       console.log(currentPage)
+    const [currentPage, setCurrentPage] = useState(-30)
     const pokemons = UsePokemons(30, currentPage);
-    console.log(pokemons)
     function pokemon(pokemons) {
-        console.log(pokemons.flat(1))
         return pokemons.flat(1).map((p) => <Card key={p.name} pokemon={p} />);
     }
 
@@ -76,5 +61,6 @@ const NextPage = styled.div`
    text-align: center;
    padding: 20px 10px;
    margin-bottom: 20px;
+   border-radius: 6px;
 `;
 

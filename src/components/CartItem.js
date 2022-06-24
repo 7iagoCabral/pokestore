@@ -2,18 +2,18 @@ import styled from "styled-components";
 import {Plus, Minus, Trash} from "phosphor-react";
 import { PokemonSpec } from "./PokemonSpec";
 
-export function CartItem() {
+export function CartItem({pokemon}) {
     return(
         <CartComponent>
             <div className="pokemon-img">
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/4.svg" alt="" />
+                <img src={pokemon.avatarImg} alt={pokemon.name} />
 
             </div>
 
             
             <div className="pokemon-data">
-                <span>Pokemon Name</span>
-                <PokemonSpec />
+                <span>{pokemon.name}</span>
+                <PokemonSpec props={pokemon.infos} />
             </div>
             <div className="pokemon-count">
                 <form>
@@ -24,7 +24,7 @@ export function CartItem() {
             </div>
             <div className="pokemon-price">
                     
-                    P$ 274,87
+                    P$ {pokemon.price}
                
             </div>
             <div className="pokemon-remove">
