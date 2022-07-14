@@ -6,10 +6,11 @@ import { UsePokemons } from "../hooks/usePokemons";
 
 
 export function Home() {
-        
+    
      
-    const [currentPage, setCurrentPage] = useState(-30)
+    const [currentPage, setCurrentPage] = useState(30)
     const pokemons = UsePokemons(30, currentPage);
+    console.log(pokemons);
     function pokemon(pokemons) {
         return pokemons.flat(1).map((p) => <Card key={p.name} pokemon={p} />);
     }
@@ -34,8 +35,9 @@ export function Home() {
         
         
         { !pokemons.loading && pokemon(pokemons.data) }
-
-        <NextPage id="next-page" > Loading ... </NextPage>
+        
+        
+         <NextPage id="next-page" > Loading ... </NextPage>
         </Main>
     );
 

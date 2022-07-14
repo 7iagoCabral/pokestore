@@ -9,6 +9,7 @@ import { CartContextProvide } from './contexts/CartContext';
 
 
 function App() {
+  console.log('APP');
   return (
     
     <BrowserRouter>

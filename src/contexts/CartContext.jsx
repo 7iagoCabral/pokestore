@@ -1,15 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+
 
 const MyCartStorage = JSON.parse(localStorage.getItem('mypokedex')) || []
 
 export const CartContext = React.createContext(MyCartStorage)
 export const CartContextProvide = props => {
+    
+    //const [myCart, setMyCart] = useState([]);
+    
+    //getMyCartOnLocalStorage()
+    //console.log(myCart)
 
+    
+
+    console.log("Context")
     function PushMyCart ({...pokemon}){
         let pokemonsByName = MyCartStorage.map(pokemon => pokemon.name)
         let onMyCart = pokemonsByName.some(el => el == pokemon.name)
         if(!onMyCart){
-
+            
             MyCartStorage.push(
                
                 {
@@ -23,9 +32,10 @@ export const CartContextProvide = props => {
 
             return localStorage.setItem('mypokedex', JSON.stringify(MyCartStorage)   )
         }
-
-
+        
+        
     }
+    
     
     
     function handleBuyPokemon({...pokemon}){
@@ -47,7 +57,7 @@ export const CartContextProvide = props => {
     return(
         <CartContext.Provider value={{
             handleBuyPokemon, 
-            MyCartStorage,
+            MyCartStorage
         }}>
             {props.children}
         </CartContext.Provider>

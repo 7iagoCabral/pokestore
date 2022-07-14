@@ -4,7 +4,12 @@ import { ShoppingCart, HeartStraight, MagnifyingGlass } from "phosphor-react";
 
 import LogoImg from "../assets/images/pokemon-logo.png";
 
+import { useContext } from "react";
+import { CartContext } from "../contexts/CartContext";
+
 export function Menu() {
+    const { MyCartStorage } = useContext(CartContext);
+
     return(
         <Nav>
             <div className="container">
@@ -28,8 +33,8 @@ export function Menu() {
                         <button><MagnifyingGlass size={16} color="#000" /></button>
                     </form>
                     <div className="user">
-                        <Link to="/cart"><ShoppingCart size={28} color="#fafafa" /><span>6</span></Link>
-                        <a href=""><HeartStraight size={28} color="#fafafa" /><span>10</span></a>
+                        <Link to="/cart"><ShoppingCart size={28} color="#fafafa" />{MyCartStorage.length ? <span>{MyCartStorage.length}</span> : ''}</Link>
+                        <a href=""><HeartStraight size={28} color="#fafafa" /></a>
                     </div>
                 </NavUser>
             </div>

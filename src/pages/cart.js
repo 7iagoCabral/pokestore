@@ -12,10 +12,9 @@ export function Cart() {
     }
 
     function ResumeCart(pokemons){
-        console.log(pokemons)
         return (pokemons.map((pokemon) => {
             <ResumeItem key={pokemon.name}>
-                 <span>{pokemon.qtd} - {pokemon.name} </span>
+                 <span>{pokemon.qtd} - {pokemon.name}</span>
                  <span>P$ {pokemon.price * pokemon.qtd} </span>
             </ResumeItem>
 
@@ -30,7 +29,7 @@ export function Cart() {
         <Wrapper width="30%" >
             <Resume>
                 <SubTitle>Resumo do pedido</SubTitle>
-                    {MyCartStorage && ResumeCart(MyCartStorage)}
+                    {MyCartStorage ? ResumeCart(MyCartStorage) : 'Carinho vazio'}
                 
                 
                 <BreakLine />
