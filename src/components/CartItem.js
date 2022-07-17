@@ -16,11 +16,11 @@ export function CartItem({pokemon}) {
                 <PokemonSpec props={pokemon.infos} />
             </div>
             <div className="pokemon-count">
-                <form>
+                {/* <form>
                     <button className="plus"><Plus size={24} color="#fff" weight="bold" /></button>
                     <input type="text" value=" 1" />
                     <button className="minus"><Minus size={24} color="#fff" weight="bold" /></button>
-                </form>
+                </form> */}
             </div>
             <div className="pokemon-price">
                     

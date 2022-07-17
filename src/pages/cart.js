@@ -2,11 +2,10 @@ import styled from "styled-components";
 import {  } from "phosphor-react";
 import { CartItem } from "../components/CartItem";
 
-import { useContext } from "react";
-import { CartContext } from "../contexts/CartContext";
+import { connect } from "react-redux";
 
-export function Cart() {
-    const { MyCartStorage } = useContext(CartContext);
+
+function Cart({pokemonsCart}) {
     function pokemon(pokemons) {
         return pokemons.map((pokemon)=> <CartItem key={pokemon.name} pokemon={pokemon} />)
     }
@@ -24,12 +23,12 @@ export function Cart() {
         <Main>
         <Wrapper width="70%" >
         <Title>Meu Carrinho</Title>
-            {MyCartStorage && pokemon(MyCartStorage)}
+            {pokemonsCart && pokemon(pokemonsCart)}
         </Wrapper>
         <Wrapper width="30%" >
             <Resume>
                 <SubTitle>Resumo do pedido</SubTitle>
-                    {MyCartStorage ? ResumeCart(MyCartStorage) : 'Carinho vazio'}
+                    {pokemonsCart ? ResumeCart(pokemonsCart) : 'Carinho vazio'}
                 
                 
                 <BreakLine />
@@ -92,7 +91,6 @@ const SubTitle = styled.h2`
     color: #000000;
 
 `;
-
 const Resume = styled.div`
     display: flex;
     flex-direction: column;
@@ -104,7 +102,6 @@ const Resume = styled.div`
     padding: 12px;
 
 `;
-
 const ResumeItem = styled.div`
 
         font-family: 'Poppins';
@@ -119,7 +116,6 @@ const ResumeItem = styled.div`
         justify-content: space-between;
 
 `;
-
 const ResumeTotal = styled.div`
         font-family: 'Oswald';
         font-style: normal;
@@ -170,8 +166,17 @@ const ResumeButton = styled.button`
 
 
 `;
-
 const BreakLine = styled.div`
     border-bottom: 1px solid #00000025;
     margin: 8px 0;
 `;
+const mapStateToProps = state => ({
+    pokemonsCart: state.pokemonsCart
+});
+const mapDispatchToProps = dispatch => {
+    return {
+ 
+    }
+   
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Cart)

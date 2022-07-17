@@ -9,11 +9,11 @@ export const CartContextProvide = props => {
     //const [myCart, setMyCart] = useState([]);
     
     //getMyCartOnLocalStorage()
-    //console.log(myCart)
+    //
 
     
 
-    console.log("Context")
+    
     function PushMyCart ({...pokemon}){
         let pokemonsByName = MyCartStorage.map(pokemon => pokemon.name)
         let onMyCart = pokemonsByName.some(el => el == pokemon.name)

@@ -1,21 +1,23 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Card } from "../components/Card";
+import Card from "../components/Card";
 import { Specie } from "../components/Specie";
-import { UsePokemons } from "../hooks/usePokemons";
+
+import { connect } from "react-redux";
+import { pokestore } from "../store/actions/actions"
 
 
-export function Home() {
+
+function Home({ pokemonsList, pokemonsCart, dispatch, startStore }) {
     
+
      
-    const [currentPage, setCurrentPage] = useState(30)
-    const pokemons = UsePokemons(30, currentPage);
-    console.log(pokemons);
+    
     function pokemon(pokemons) {
-        return pokemons.flat(1).map((p) => <Card key={p.name} pokemon={p} />);
+        return pokemons.map((pokemon) => <Card key={pokemon.name} pokemon={pokemon} />);
     }
 
-    useEffect(()=>{
+    /* useEffect(()=>{
         const intersectionObserver = new IntersectionObserver((entries)=>{
             if(entries.some((entry) => entry.isIntersecting) && pokemons.next){
                 setCurrentPage((currentPageInsideState)=> currentPageInsideState + 30)
@@ -26,18 +28,16 @@ export function Home() {
 
         return () => intersectionObserver.disconnect()
 
-    },[])
+    },[]) */
 
     return(
         <Main>
-    
+        {pokemon(pokemonsList) }
         
         
-        
-        { !pokemons.loading && pokemon(pokemons.data) }
-        
-        
-         <NextPage id="next-page" > Loading ... </NextPage>
+         <NextPage id="next-page" >
+        <button onClick={()=> startStore(30, pokemonsList.length+30, null)}>More Pokemons</button>
+         </NextPage>
         </Main>
     );
 
@@ -55,7 +55,6 @@ const Main = styled.div`
     margin: 0 auto;
     padding: 40px 0 0;
 `;
-
 const NextPage = styled.div`
    background: #D94747;
    width: 100%;
@@ -66,3 +65,19 @@ const NextPage = styled.div`
    border-radius: 6px;
 `;
 
+const mapStateToProps = state => ({
+    pokemonsList: state.pokemonsList,
+    pokemonsCart: state.pokemonsCart
+});
+const mapDispatchToProps = dispatch => {
+    return {
+
+        startStore: (limit = 30, offset = 0, pokemonType = null) => dispatch(
+         pokestore(limit, offset, pokemonType)
+        ) 
+    }
+   
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

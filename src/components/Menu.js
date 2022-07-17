@@ -3,12 +3,10 @@ import { Link } from 'react-router-dom';
 import { ShoppingCart, HeartStraight, MagnifyingGlass } from "phosphor-react";
 
 import LogoImg from "../assets/images/pokemon-logo.png";
+import { connect } from "react-redux";
 
-import { useContext } from "react";
-import { CartContext } from "../contexts/CartContext";
 
-export function Menu() {
-    const { MyCartStorage } = useContext(CartContext);
+function Menu({pokemonsCart}) {
 
     return(
         <Nav>
@@ -33,7 +31,7 @@ export function Menu() {
                         <button><MagnifyingGlass size={16} color="#000" /></button>
                     </form>
                     <div className="user">
-                        <Link to="/cart"><ShoppingCart size={28} color="#fafafa" />{MyCartStorage.length ? <span>{MyCartStorage.length}</span> : ''}</Link>
+                        <Link to="/cart"><ShoppingCart size={28} color="#fafafa" />{pokemonsCart.length ? <span>{pokemonsCart.length}</span> : ''}</Link>
                         <a href=""><HeartStraight size={28} color="#fafafa" /></a>
                     </div>
                 </NavUser>
@@ -156,3 +154,8 @@ const NavUser = styled.div`
         font-size: 12px;
     }
 `;
+const mapDispatchToProps = state => ({
+    pokemonsCart: state.pokemonsCart
+})
+
+export default connect(mapDispatchToProps)(Menu)

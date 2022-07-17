@@ -1,17 +1,16 @@
 import styled from "styled-components";
-import { usePokemon } from "../hooks/usePokemon";
 import { PokemonSpec } from "./PokemonSpec";
 
 import loadingImg from "../assets/images/pokeball.png";
-import { useContext } from "react";
-import { CartContext } from "../contexts/CartContext";
 
-export function Card(props) {
-    const {loading, pokemon} = usePokemon(props.pokemon.url);
-    const { handleBuyPokemon } = useContext(CartContext)
-    
+import { connect } from "react-redux";
+import { dispatch } from 'redux'
+import store from '../store';
+import { handleBuyPokemon } from '../store/actions/actions';
+
+function Card({ handleBuyPokemon, pokemon}) {
   
-    
+    let loading = false
     if(!loading){
         return(
             <CARD>
@@ -71,11 +70,6 @@ const CARD = styled.div`
     }
 
 `;
-
-
-
-
-
 const CardButton = styled.button`
 
 
@@ -117,3 +111,9 @@ const Loading = styled.img`
         }
     }
 `;
+const mapStateToProps = state => ({
+});
+const mapDispatchToProps = dispatch => ({
+   handleBuyPokemon: (pokemon) => dispatch(handleBuyPokemon(pokemon))
+})
+export default connect(mapStateToProps, mapDispatchToProps)(Card);
