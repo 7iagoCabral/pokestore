@@ -19,7 +19,7 @@ function Home({ pokemonsList, pokemonsCart, dispatch, startStore }) {
 
     /* useEffect(()=>{
         const intersectionObserver = new IntersectionObserver((entries)=>{
-            if(entries.some((entry) => entry.isIntersecting) && pokemons.next){
+            if(entries.some((entry) => entry.isIntersecting)){
                 setCurrentPage((currentPageInsideState)=> currentPageInsideState + 30)
             }
         })
@@ -29,14 +29,16 @@ function Home({ pokemonsList, pokemonsCart, dispatch, startStore }) {
         return () => intersectionObserver.disconnect()
 
     },[]) */
-
+    useEffect(()=>{
+        startStore(30, 0, null)
+    },[])
     return(
         <Main>
+        
         {pokemon(pokemonsList) }
         
-        
          <NextPage id="next-page" >
-        <button onClick={()=> startStore(30, pokemonsList.length+30, null)}>More Pokemons</button>
+        <button onClick={()=> startStore(30, (pokemonsList.length -30)+30, null)}>More Pokemons</button>
          </NextPage>
         </Main>
     );
@@ -76,7 +78,7 @@ const mapDispatchToProps = dispatch => {
          pokestore(limit, offset, pokemonType)
         ) 
     }
-   
+    
 }
 
 
