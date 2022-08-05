@@ -2,7 +2,12 @@ import styled from "styled-components";
 import {Plus, Minus, Trash} from "phosphor-react";
 import { PokemonSpec } from "./PokemonSpec";
 
-export function CartItem({pokemon}) {
+import { connect } from "react-redux";
+import { dispatch } from 'redux'
+import store from '../store';
+import { handleRemovePokemon } from '../store/actions/actions';
+
+function CartItem({handleRemovePokemon ,pokemon}) {
     return(
         <CartComponent>
             <div className="pokemon-img">
@@ -28,7 +33,7 @@ export function CartItem({pokemon}) {
                
             </div>
             <div className="pokemon-remove">
-                <button><Trash size={28} color="#000000" weight="bold" /></button>
+                <button onClick={()=> handleRemovePokemon(pokemon)}><Trash size={28} color="#000000" weight="bold" /></button>
             </div>
         </CartComponent>
     );
@@ -148,3 +153,9 @@ const CartComponent = styled.div`
 
     }
 `;
+const mapStateToProps = state => ({
+});
+const mapDispatchToProps = dispatch => ({
+    handleRemovePokemon: (pokemon) => dispatch(handleRemovePokemon(pokemon))
+})
+export default connect(mapStateToProps, mapDispatchToProps)(CartItem);

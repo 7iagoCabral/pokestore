@@ -12,6 +12,13 @@ export function handleBuyPokemon(pokemon){
   }
 
 } 
+export function handleRemovePokemon(pokemon){
+  return{
+    type: 'REMOVE_ON_CART',
+    payload: pokemon
+  }
+
+} 
 
 
 export function pokestore(limit, offset, pokemonType){

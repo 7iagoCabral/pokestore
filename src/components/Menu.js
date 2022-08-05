@@ -15,13 +15,13 @@ function Menu({pokemonsCart}) {
 
                 <ul className="menu">
                     <li>
-                        <Link to="/">Home</Link>
+                        <Link to="/">Inicio</Link>
                     </li>
                     <li>
-                        <a href="">Store</a>
+                        <Link to="">Loja</Link>
                     </li>
                     <li>
-                        <a href="">Species</a>
+                        <Link to="">Sobre</Link>
                     </li>
                     
                 </ul>
@@ -32,7 +32,7 @@ function Menu({pokemonsCart}) {
                     </form>
                     <div className="user">
                         <Link to="/cart"><ShoppingCart size={28} color="#fafafa" />{pokemonsCart.length ? <span>{pokemonsCart.length}</span> : ''}</Link>
-                        <a href=""><HeartStraight size={28} color="#fafafa" /></a>
+                        { /*<a href=""><HeartStraight size={28} color="#fafafa" /></a> */}
                     </div>
                 </NavUser>
             </div>

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import {  } from "phosphor-react";
-import { CartItem } from "../components/CartItem";
+import CartItem from "../components/CartItem";
 
 import { connect } from "react-redux";
 
@@ -11,13 +11,15 @@ function Cart({pokemonsCart}) {
     }
 
     function ResumeCart(pokemons){
-        return (pokemons.map((pokemon) => {
+        
+        return pokemons.map((pokemon) => {
+            return(
             <ResumeItem key={pokemon.name}>
-                 <span>{pokemon.qtd} - {pokemon.name}</span>
-                 <span>P$ {pokemon.price * pokemon.qtd} </span>
-            </ResumeItem>
+                 <span>0 - {pokemon.name}</span>
+                 <span>P$ {pokemon.price} </span>
+            </ResumeItem>)
 
-        }))
+        })
     }
     return(
         <Main>
@@ -28,20 +30,25 @@ function Cart({pokemonsCart}) {
         <Wrapper width="30%" >
             <Resume>
                 <SubTitle>Resumo do pedido</SubTitle>
-                    {pokemonsCart ? ResumeCart(pokemonsCart) : 'Carinho vazio'}
-                
-                
+                    {pokemonsCart ? ResumeCart(pokemonsCart): 'Carrinho vazio'}
+        
                 <BreakLine />
                 <ResumeTotal>
                     <span>Total</span>
-                    <span>P$ 12521,00</span>
+                    <span>P$ {pokemonsCart.reduce((acc, curr) => acc + parseFloat(curr.price),0)}</span>
                 </ResumeTotal>
                 <ResumeFooter>
                     Receba 7% de CashBack
                 </ResumeFooter>
                 <BreakLine />
 
-                <ResumeButton>Finalizar</ResumeButton>
+                <ResumeButton
+                onClick={()=>{
+
+                    localStorage.removeItem('pokestoreCart')
+                }
+                }
+                >Finalizar</ResumeButton>
             
             </Resume>
         </Wrapper>

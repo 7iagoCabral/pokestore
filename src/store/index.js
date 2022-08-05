@@ -46,11 +46,22 @@ function reducer(state = INITIAL_STATE, action) {
           pokemonsCart: [...state.pokemonsCart, action.payload]
         }
       } */
-      case 'ADD_MORE_ONE':
+      case 'REMOVE_ON_CART':
+        const existLocal = state.pokemonsCart.indexOf(action.payload)
+        console.log(existLocal)
+        if(existLocal != -1){
+          state.pokemonsCart.splice(existLocal, 1)
+          localStorage.setItem('pokestoreCart', JSON.stringify([...state.pokemonsCart]))
           return{
             ...state,
-            pokemonsCart: [...state.pokemonsCart, action.payload]
+            pokemonsCart: [...state.pokemonsCart]
           }
+        }else{
+          return{
+            ...state
+          }
+
+        }
   }
   
   
