@@ -10,7 +10,7 @@ import { handleFinishCart } from "../store/actions/actions";
 function Cart({pokemonsCart, handleFinishCart}) {
     const navegation = useNavigate()
     function pokemon(pokemons) {
-        if(pokemons & pokemons.length > 0 ){
+        if(pokemons.length > 0 ){
             return pokemons.map((pokemon)=> <CartItem key={pokemon.name} pokemon={pokemon} />)
         }else{
             return ( 'Carrinho está vazio.')
@@ -18,7 +18,7 @@ function Cart({pokemonsCart, handleFinishCart}) {
     }
 
     function ResumeCart(pokemons){
-        if(pokemons && pokemons.length > 0){
+        if(pokemons.length > 0){
             return pokemons.map((pokemon) => {
                 return(
                 <ResumeItem key={pokemon.name}>
