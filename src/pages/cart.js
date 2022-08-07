@@ -3,23 +3,34 @@ import {  } from "phosphor-react";
 import CartItem from "../components/CartItem";
 
 import { connect } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { handleFinishCart } from "../store/actions/actions";
 
 
-function Cart({pokemonsCart}) {
+function Cart({pokemonsCart, handleFinishCart}) {
+    const navegation = useNavigate()
     function pokemon(pokemons) {
-        return pokemons.map((pokemon)=> <CartItem key={pokemon.name} pokemon={pokemon} />)
+        if(pokemons & pokemons.length > 0 ){
+            return pokemons.map((pokemon)=> <CartItem key={pokemon.name} pokemon={pokemon} />)
+        }else{
+            return ( 'Carrinho está vazio.')
+        }
     }
 
     function ResumeCart(pokemons){
-        
-        return pokemons.map((pokemon) => {
-            return(
-            <ResumeItem key={pokemon.name}>
-                 <span>0 - {pokemon.name}</span>
-                 <span>P$ {pokemon.price} </span>
-            </ResumeItem>)
+        if(pokemons && pokemons.length > 0){
+            return pokemons.map((pokemon) => {
+                return(
+                <ResumeItem key={pokemon.name}>
+                     <span>0 - {pokemon.name}</span>
+                     <span>P$ {pokemon.price} </span>
+                </ResumeItem>)
+    
+            })
 
-        })
+        }else{
+            return ('Carrinho está vazio.')
+        }
     }
     return(
         <Main>
@@ -30,7 +41,7 @@ function Cart({pokemonsCart}) {
         <Wrapper width="30%" >
             <Resume>
                 <SubTitle>Resumo do pedido</SubTitle>
-                    {pokemonsCart ? ResumeCart(pokemonsCart): 'Carrinho vazio'}
+                    {pokemonsCart ? ResumeCart(pokemonsCart): 'Carrinho vazio.'}
         
                 <BreakLine />
                 <ResumeTotal>
@@ -43,11 +54,7 @@ function Cart({pokemonsCart}) {
                 <BreakLine />
 
                 <ResumeButton
-                onClick={()=>{
-
-                    localStorage.removeItem('pokestoreCart')
-                }
-                }
+                onClick={handleFinishCart}
                 >Finalizar</ResumeButton>
             
             </Resume>
@@ -182,7 +189,7 @@ const mapStateToProps = state => ({
 });
 const mapDispatchToProps = dispatch => {
     return {
- 
+        handleFinishCart: ()=> dispatch(handleFinishCart())
     }
    
 }

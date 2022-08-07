@@ -38,7 +38,7 @@ function Home({ pokemonsList, pokemonsCart, dispatch, startStore }) {
         {pokemon(pokemonsList) }
         
          <NextPage id="next-page" >
-        <button onClick={()=> startStore(30, (pokemonsList.length -30)+30, null)}>More Pokemons</button>
+        <MoreButton onClick={()=> startStore(30, (pokemonsList.length -30)+30, null)}>Próxima página</MoreButton>
          </NextPage>
         </Main>
     );
@@ -65,6 +65,28 @@ const NextPage = styled.div`
    padding: 20px 10px;
    margin-bottom: 20px;
    border-radius: 6px;
+`;
+const MoreButton = styled.button`
+    align-self: center;
+
+    width: 238px;
+    height: 35px;
+    background: #d3d3d3;
+    border-radius: 6px;
+    border: 0;
+
+    font-family: 'Oswald';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+    color: #000;
+
+    cursor: pointer;
+
+    
+
+
 `;
 
 const mapStateToProps = state => ({

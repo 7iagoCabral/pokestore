@@ -19,6 +19,11 @@ export function handleRemovePokemon(pokemon){
   }
 
 } 
+export function handleFinishCart(){
+  return{
+    type: 'FINISH_CART'
+  }
+}
 
 
 export function pokestore(limit, offset, pokemonType){

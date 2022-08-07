@@ -28,27 +28,20 @@ function reducer(state = INITIAL_STATE, action) {
 
     };
     case 'ADD_ON_CART':
-      localStorage.setItem('pokestoreCart', JSON.stringify([...state.pokemonsCart, action.payload]))
-        return {
-          ...state,
-          pokemonsCart: [...state.pokemonsCart, action.payload]
-        }
-      /* let onCart = state.pokemonsCart.some(pokemon => pokemon.name == action.payload.name);
-      if(onCart){
-        localStorage.setItem('pokestoreCart', JSON.stringify(state.pokemonsCart))
-        return {
-          ...state
-        }
-      }else{
+      let onCart = state.pokemonsCart.some(pokemon => pokemon.name == action.payload.name) 
+      if(!onCart){
+
         localStorage.setItem('pokestoreCart', JSON.stringify([...state.pokemonsCart, action.payload]))
-        return {
-          ...state,
-          pokemonsCart: [...state.pokemonsCart, action.payload]
-        }
-      } */
+          return {
+            ...state,
+            pokemonsCart: [...state.pokemonsCart, action.payload]
+          }
+      }
+      return {
+        ...state
+      }
       case 'REMOVE_ON_CART':
         const existLocal = state.pokemonsCart.indexOf(action.payload)
-        console.log(existLocal)
         if(existLocal != -1){
           state.pokemonsCart.splice(existLocal, 1)
           localStorage.setItem('pokestoreCart', JSON.stringify([...state.pokemonsCart]))
@@ -61,6 +54,13 @@ function reducer(state = INITIAL_STATE, action) {
             ...state
           }
 
+        }
+
+      case 'FINISH_CART':
+        localStorage.removeItem('pokestoreCart')
+        return {
+          ...state,
+          pokemonsCart: []
         }
   }
   
